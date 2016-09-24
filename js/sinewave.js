@@ -28,7 +28,7 @@ function draw(canvasid) {
  	x2[i]=tstart + i*dt;
  	x3[i]=tstart + i*dt;
  	y[i] = Vp1*Math.sin(2*3.1415*fo*x[i] + phase1*3.1415/180);
-  y2[i] = Vp2*Math.sin(2*3.1415*fo*x2[i] + phase2*3.1415/180);
+  y2[i] = Vp2*Math.sin(2*3.1415*fo2*x2[i] + phase2*3.1415/180);
   y3[i] = Vp3*Math.sin(2*3.1415*fo*x3[i] + phase3*3.1415/180);
  }
 
@@ -72,10 +72,11 @@ function showAxes(ctx,axes) {
  ctx.stroke();
 }
 
-var Vp1 = .3; //Magnitude
-var Vp2 = -.3;
+var Vp1 = .55; //Magnitude
+var Vp2 = -.6;
 var Vp3 = .15;
 var fo = 1000; //Period Size (oppsosite, larger number = smaller wavelength)
+var fo2 = 1200;
 var phase1 = 0; //moves the graph left with positive numbers other way with negative numbers
 var phase2 = -50;
 var phase3 = -100;
@@ -89,13 +90,13 @@ function loopWave() {
     evan++;
     phase1 = phase1 + 2;
     if (evan < 100) {
-      Vp1 = Vp1 + .0235;
+      Vp1 = Vp1 + .0065;
     }
     if (evan > 100) {
-      Vp1 = Vp1 - .0235;
+      Vp1 = Vp1 - .0065;
     }
     if (evan > 200) {
-      Vp1 = .3;
+      Vp1 = .55;
       evan = 1;
     }
     draw('1');
@@ -108,17 +109,16 @@ function loopWave2() {
     evan++;
     phase2 = phase2 + 3;
     if (evan < 50) {
-      Vp2 = Vp2 - .012;
+      Vp2 = Vp2 + .0092;
     }
     if (evan > 50 && evan < 150) {
-      Vp2 = Vp2 + .012;
+      Vp2 = Vp2 - .0092;
     }
     if (evan > 150) {
-      Vp2 = Vp2 - .012;
+      Vp2 = Vp2 + .0092;
     }
     if (evan > 200) {
-      Vp2 = -.3;
-      evan = 1;
+      Vp2 = -.6;
     }
     draw('2');
       loopWave2();
@@ -127,7 +127,6 @@ function loopWave2() {
 
 function loopWave3() {
   setTimeout(function() {
-    evan++;
     phase3 = phase3 + 1;
     if (evan < 50) {
       Vp3 = Vp3 + .00125;
@@ -143,7 +142,6 @@ function loopWave3() {
     }
     if (evan > 200) {
       Vp3 = .15;
-      evan = 1;
     }
     draw('3');
       loopWave3();
