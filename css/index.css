@@ -2,6 +2,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: black;
+  font-family: 'Open Sans', sans-serif;
 }
 
 canvas {
@@ -10,12 +11,76 @@ canvas {
   margin: 0;
   position: absolute;
   background-color: transparent;
+  z-index: 1;
 }
 
-#canvas {
+h1 {
+  font-weight: bold;
+  position: absolute;
+  z-index: 50;
+  margin: 0;
+  color: white;
+  text-align: center;
+  width: 380px;
+  font-size: 400%;
+  margin-left: -190px;
+  left: 50%;
+  top: 20vh;
+}
+
+button {
+  position: absolute;
+  border: solid #03c03c 3px;
+  bottom: 20vh;
+  left: 50%;
+  width: 180px;
+  margin: 0;
+  font-size: 150%;
+  color: white;
+  cursor: pointer;
+  height: 60px;
+  border-radius: 30px;
+  margin-left: -90px;
+  background-color: transparent;
+  outline: none;
+  z-index: 51;
+  letter-spacing: 2px;
+  transition: background-color .3s;
+}
+
+button:hover {
+  background-color: #03c03c;
+}
+
+span {
+  color: #03c03c;
+}
+
+@media (max-width: 515px) {
+
+h1 {
+  font-size: 300%;
+}
+
+button {
+  font-size: 120%;
+  height: 50px;
+  width: 150px;
+  margin-left: -75px;
+}
 
 }
 
-#canvas2 {
+@media (max-width: 415px) {
+
+h1 {
+  font-size: 280%;
+}
+
+button {
+  width: 130px;
+  margin-left: -65px;
+  height: 45px;
+}
 
 }
