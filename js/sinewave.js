@@ -1,6 +1,6 @@
-function draw() {
-
- var canvas = document.getElementById("canvas");
+function draw(canvasid) {
+  console.log(canvasid);
+ var canvas = document.getElementById(canvasid);
  if (null==canvas || !canvas.getContext) return;
  ctx=canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -12,6 +12,8 @@ function draw() {
  axes.y0 = 0.5 + 0.5*canvas.height;
 
  var x=new Array(), y=new Array();
+ var x2=new Array(), y2=new Array();
+ var x3=new Array(), y3=new Array();
  var dt, tstart, tstop;
 
  tstart=-Tmax;
@@ -23,10 +25,17 @@ function draw() {
 
  for ( i=0; i<N; i++) {
  	x[i]=tstart + i*dt;
- 	y[i] = Vp*Math.sin(2*3.1415*fo*x[i] + phase*3.1415/180) ;
+ 	x2[i]=tstart + i*dt;
+ 	x3[i]=tstart + i*dt;
+ 	y[i] = Vp1*Math.sin(2*3.1415*fo*x[i] + phase1*3.1415/180);
+  y2[i] = Vp2*Math.sin(2*3.1415*fo*x2[i] + phase2*3.1415/180);
+  y3[i] = Vp3*Math.sin(2*3.1415*fo*x3[i] + phase3*3.1415/180);
  }
 
- GraphArray(ctx,axes,x,y,"rgb(0,255,0)",2);
+
+ GraphArray(ctx,axes,x,y,"rgb(0,255,0)",10);
+ GraphArray(ctx,axes,x2,y2,"rgb(0,255,0)",10);
+ GraphArray(ctx,axes,x3,y3,"rgb(0,255,0)",10);
  }
 
 function GraphArray (ctx,axes,x,y,color,thick) {
@@ -63,9 +72,13 @@ function showAxes(ctx,axes) {
  ctx.stroke();
 }
 
-var Vp = .7; //Magnitude
+var Vp1 = .3; //Magnitude
+var Vp2 = -.3;
+var Vp3 = .15;
 var fo = 1000; //Period Size (oppsosite, larger number = smaller wavelength)
-var phase = 0; //moves the graph left with positive numbers other way with negative numbers
+var phase1 = 0; //moves the graph left with positive numbers other way with negative numbers
+var phase2 = -50;
+var phase3 = -100;
 var Vmax = 2; //The max height, higher number equals smaller, wont use bc of Vp
 var Tmax = 0.001; //dont mess
 var N = 1001; //exactness of sine wave, could get nifty with this
@@ -73,39 +86,72 @@ var N = 1001; //exactness of sine wave, could get nifty with this
 var evan = 1;
 function loopWave() {
   setTimeout(function() {
-    phase = phase + 6;
     evan++;
-    if (evan > 2) {
-      Vp = Vp + .01;
-    }
-    if (evan > 10 && evan < 26) {
-      fo = fo - 10;
-    }
-    if (evan > 26 && evan < 40) {
-        Vp = Math.abs(Vp);
-        Vp = Vp - .1;
-    }
-    if (evan % 25 === 1) {
-      Vp = -Vp;
-    }
-    if (evan > 10 && evan < 50) {
-      phase = phase - 10;
-    }
-    if (evan > 40) {
-      Vp = Vp + .05;
+    phase1 = phase1 + 2;
+    if (evan < 100) {
+      Vp1 = Vp1 + .0235;
     }
     if (evan > 100) {
-      console.log('lol');
-      evan = evan -100;
-      Vp = .7;
-      fo = 1000;
-      phase = 0;
+      Vp1 = Vp1 - .0235;
     }
-    draw();
+    if (evan > 200) {
+      Vp1 = .3;
+      evan = 1;
+    }
+    draw('1');
       loopWave();
+  },50)
+}
+
+function loopWave2() {
+  setTimeout(function() {
+    evan++;
+    phase2 = phase2 + 3;
+    if (evan < 50) {
+      Vp2 = Vp2 - .012;
+    }
+    if (evan > 50 && evan < 150) {
+      Vp2 = Vp2 + .012;
+    }
+    if (evan > 150) {
+      Vp2 = Vp2 - .012;
+    }
+    if (evan > 200) {
+      Vp2 = -.3;
+      evan = 1;
+    }
+    draw('2');
+      loopWave2();
+  },50)
+}
+
+function loopWave3() {
+  setTimeout(function() {
+    evan++;
+    phase3 = phase3 + 1;
+    if (evan < 50) {
+      Vp3 = Vp3 + .00125;
+    }
+    if (evan > 50 && evan < 100) {
+      Vp3 = Vp3 - .00125;
+    }
+    if (evan > 100 && evan < 150) {
+      Vp3 = Vp3 + .00125;
+    }
+    if (evan > 150 && evan < 200) {
+      Vp3 = Vp3 - .00125;
+    }
+    if (evan > 200) {
+      Vp3 = .15;
+      evan = 1;
+    }
+    draw('3');
+      loopWave3();
   },50)
 }
 
 $(document).ready(function() {
   loopWave();
+  loopWave2();
+  loopWave3();
 });
