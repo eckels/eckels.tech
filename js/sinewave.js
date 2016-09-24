@@ -1,5 +1,4 @@
 function draw(canvasid) {
-  console.log(canvasid);
  var canvas = document.getElementById(canvasid);
  if (null==canvas || !canvas.getContext) return;
  ctx=canvas.getContext("2d");
@@ -28,14 +27,14 @@ function draw(canvasid) {
  	x2[i]=tstart + i*dt;
  	x3[i]=tstart + i*dt;
  	y[i] = Vp1*Math.sin(2*3.1415*fo*x[i] + phase1*3.1415/180);
-  y2[i] = Vp2*Math.sin(2*3.1415*fo2*x2[i] + phase2*3.1415/180);
+  y2[i] = Vp2*Math.sin(2*3.1415*fo*x2[i] + phase2*3.1415/180);
   y3[i] = Vp3*Math.sin(2*3.1415*fo*x3[i] + phase3*3.1415/180);
  }
 
 
- GraphArray(ctx,axes,x,y,"rgb(0,255,0)",10);
- GraphArray(ctx,axes,x2,y2,"rgb(0,255,0)",10);
- GraphArray(ctx,axes,x3,y3,"rgb(0,255,0)",10);
+ GraphArray(ctx,axes,x,y,"rgb(3,220,56)",10);
+ GraphArray(ctx,axes,x2,y2,"rgb(3,220,56)",10);
+ GraphArray(ctx,axes,x3,y3,"rgb(3,220,56)",10);
  }
 
 function GraphArray (ctx,axes,x,y,color,thick) {
@@ -72,11 +71,10 @@ function showAxes(ctx,axes) {
  ctx.stroke();
 }
 
-var Vp1 = .55; //Magnitude
-var Vp2 = -.6;
+var Vp1 = .35; //Magnitude
+var Vp2 = -.4;
 var Vp3 = .15;
 var fo = 1000; //Period Size (oppsosite, larger number = smaller wavelength)
-var fo2 = 1200;
 var phase1 = 0; //moves the graph left with positive numbers other way with negative numbers
 var phase2 = -50;
 var phase3 = -100;
@@ -90,13 +88,13 @@ function loopWave() {
     evan++;
     phase1 = phase1 + 2;
     if (evan < 100) {
-      Vp1 = Vp1 + .0065;
+      Vp1 = Vp1 + .0045;
     }
     if (evan > 100) {
-      Vp1 = Vp1 - .0065;
+      Vp1 = Vp1 - .0045;
     }
     if (evan > 200) {
-      Vp1 = .55;
+      Vp1 = .35;
       evan = 1;
     }
     draw('1');
@@ -109,16 +107,16 @@ function loopWave2() {
     evan++;
     phase2 = phase2 + 3;
     if (evan < 50) {
-      Vp2 = Vp2 + .0092;
+      Vp2 = Vp2 + .0062;
     }
     if (evan > 50 && evan < 150) {
-      Vp2 = Vp2 - .0092;
+      Vp2 = Vp2 - .0062;
     }
     if (evan > 150) {
-      Vp2 = Vp2 + .0092;
+      Vp2 = Vp2 + .0062;
     }
     if (evan > 200) {
-      Vp2 = -.6;
+      Vp2 = -.4;
     }
     draw('2');
       loopWave2();
