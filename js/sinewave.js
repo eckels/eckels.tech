@@ -71,6 +71,8 @@ function showAxes(ctx,axes) {
  ctx.stroke();
 }
 
+
+var trigger = 0;
 var Vp1 = .35; //Magnitude
 var Vp2 = -.4;
 var Vp3 = .15;
@@ -97,6 +99,9 @@ function loopWave() {
       Vp1 = .35;
       evan = 1;
     }
+    if (trigger === 1) {
+      phase1 = phase1 + 22;
+    }
     draw('1');
       loopWave();
   },50)
@@ -117,6 +122,9 @@ function loopWave2() {
     }
     if (evan > 200) {
       Vp2 = -.4;
+    }
+    if (trigger === 1) {
+      phase2 = phase2 + 22;
     }
     draw('2');
       loopWave2();
@@ -140,6 +148,9 @@ function loopWave3() {
     }
     if (evan > 200) {
       Vp3 = .15;
+    }
+    if (trigger === 1) {
+      phase3 = phase3 + 22;
     }
     draw('3');
       loopWave3();
