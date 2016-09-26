@@ -77,9 +77,9 @@ var Vp1 = .35; //Magnitude
 var Vp2 = -.4;
 var Vp3 = .15;
 var fo = 1000; //Period Size (oppsosite, larger number = smaller wavelength)
-var phase1 = 0; //moves the graph left with positive numbers other way with negative numbers
-var phase2 = -50;
-var phase3 = -100;
+var phase1 = -120; //moves the graph left with positive numbers other way with negative numbers
+var phase2 = -270;
+var phase3 = -200;
 var Vmax = 2; //The max height, higher number equals smaller, wont use bc of Vp
 var Tmax = 0.001; //dont mess
 var N = 1001; //exactness of sine wave, could get nifty with this
@@ -99,8 +99,9 @@ function loopWave() {
       Vp1 = .35;
       evan = 1;
     }
+    if (phase1 > 0 && phase1 < 10){console.log('phase1change');}
     if (trigger === 1) {
-      phase1 = phase1 * 1.15;
+      phase1 = phase1 * 1.05;
     }
     draw('1');
       loopWave();
@@ -123,8 +124,9 @@ function loopWave2() {
     if (evan > 200) {
       Vp2 = -.4;
     }
+    if (phase2 > 0 && phase2 < 10){console.log('phase2change');}
     if (trigger === 1) {
-      phase2 = phase2 * 1.15;
+      phase2 = phase2 * 1.05;
     }
     draw('2');
       loopWave2();
@@ -149,8 +151,9 @@ function loopWave3() {
     if (evan > 200) {
       Vp3 = .15;
     }
+    if (phase3 > 0 && phase3 < 10){console.log('phase3change');}
     if (trigger === 1) {
-      phase3 = phase3 * 1.15;
+      phase3 = phase3 * 1.05;
     }
     draw('3');
       loopWave3();
