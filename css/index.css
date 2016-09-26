@@ -68,7 +68,20 @@ span {
   margin-top: -60px;
   border-top: solid white 4px;
   border-bottom: solid white 4px;
-  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#blur {
+  z-index: 48;
+  position: absolute;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 300px;
+  height: 128px;
+  margin-left: -150px;
+  margin-top: -60px;
+  left: 50%;
+  top: 50vh;
+  filter: blur(15px);
 }
 
 .middle-border-left {
@@ -96,11 +109,15 @@ h3 {
 
 @media (max-width: 635px) {
 
-.middle {
+.middle, #blur {
   height: 100px;
   margin-top: -50px;
   width: 260px;
   margin-left: -130px;
+}
+
+#blur {
+  height: 108px;
 }
 
 h3 {
@@ -122,11 +139,15 @@ button {
   margin-left: -75px;
 }
 
-.middle {
+.middle, #blur {
   height: 90px;
   margin-top: -45px;
   width: 230px;
   margin-left: -115px;
+}
+
+#blur {
+  height: 98px;
 }
 
 h3 {
