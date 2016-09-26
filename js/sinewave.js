@@ -100,7 +100,7 @@ function loopWave() {
       evan = 1;
     }
     if (trigger === 1) {
-      phase1 = phase1 + 22;
+      phase1 = phase1 * 1.15;
     }
     draw('1');
       loopWave();
@@ -124,7 +124,7 @@ function loopWave2() {
       Vp2 = -.4;
     }
     if (trigger === 1) {
-      phase2 = phase2 + 22;
+      phase2 = phase2 * 1.15;
     }
     draw('2');
       loopWave2();
@@ -150,7 +150,7 @@ function loopWave3() {
       Vp3 = .15;
     }
     if (trigger === 1) {
-      phase3 = phase3 + 22;
+      phase3 = phase3 * 1.15;
     }
     draw('3');
       loopWave3();
